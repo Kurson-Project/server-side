@@ -1,23 +1,31 @@
 {
-  "name": "server",
-  "version": "1.0.0",
-  "main": "index2.js",
+  "name": "server-side",
+  "version": "1.2.0",
+  "description": "server side from class webs",
   "type": "module",
+  "main": "app.js",
   "scripts": {
     "start": "nodemon app.js",
-    "migration": "node ./migration/models.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kurson-Project/server-side.git"
+  },
   "author": "",
   "license": "ISC",
-  "description": "",
+  "bugs": {
+    "url": "https://github.com/Kurson-Project/server-side/issues"
+  },
+  "homepage": "https://github.com/Kurson-Project/server-side#readme",
   "dependencies": {
-    "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
-    "multer": "^1.4.5-lts.1",
-    "mysql2": "^3.11.5",
+    "jsonwebtoken": "^9.0.2",
+    "mongose": "^0.0.2-security"
+  },
+  "devDependencies": {
     "nodemon": "^3.1.9"
   }
 }
