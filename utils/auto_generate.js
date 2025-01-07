@@ -1,0 +1,1 @@
+export const sendjson = ({status = 200,message = "",data = {}}) =>  ({status,message,data})
