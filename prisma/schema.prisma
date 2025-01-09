@@ -8,12 +8,24 @@ datasource db {
   url      = env("DB_URL")
 }
 
+model Class {
+  class_id       String   @id @default(uuid()) @db.Uuid
+  class_metadata String[] @default([])
+  class_data     String[] @default([])
+  class_iat      DateTime @default(now())
+  class_updates  DateTime @updatedAt
+}
+
 model Users {
-  id            String   @id @default(uuid()) @db.Uuid
+  id            String  @id @default(uuid()) @db.Uuid
   username      String
-  user_email    String   @unique
+  user_email    String  @unique
   user_password String
-  auth_token    String[] @default([])
-  createAt      DateTime @default(now())
-  updateAt      DateTime @updatedAt
+  user_picture  String  @default("")
+  admin         Boolean @default(false)
+
+  auth_token     String[] @default([])
+  user_buy_class String[] @default([])
+  createAt       DateTime @default(now())
+  updateAt       DateTime @updatedAt
 }

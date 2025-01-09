@@ -6,7 +6,7 @@ const authControllers = new authController()
 
 const userRouter = express.Router()
 
-userRouter.get('/user',authControllers.middleware,userControlers.store)
-userRouter.get('/user/logout',authControllers.middleware,authControllers.logout)
+userRouter.get('/user',authControllers.middleware_auth,userControlers.store)
+userRouter.get('/user/logout',authControllers.middleware_auth,authControllers.logout)
 
 export default userRouter

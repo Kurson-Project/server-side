@@ -72,7 +72,7 @@ export class authController {
         
     }
 
-    async middleware(request,response,next) {
+    async middleware_auth(request,response,next) {
         const {authorization} = request.headers
         if (!authorization) {
             response.status(400).json(sendjson({status:400,message:"invalid authorization"}))
