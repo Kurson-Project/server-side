@@ -6,7 +6,7 @@
   "main": "app.js",
   "scripts": {
     "start": "nodemon index.js",
-    "postinstall" : "prisma generate && prisma migrate dev",
+    "postinstall" : "prisma generate",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
