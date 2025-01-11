@@ -1,10 +1,8 @@
 import jwt from "jsonwebtoken";
+import { sendjson } from "../utils/auto_generate.js";
 
 export class userControler {
     async store(request , response) {
-        const {authorization} = request.headers
-        const token = authorization.split(" ")[1];
-        const data = jwt.decode(token);
-        response.json(data)
+       response.json(sendjson({data:request.userdata}))
     }
 }

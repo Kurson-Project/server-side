@@ -12,6 +12,10 @@ model Class {
   class_id       String   @id @default(uuid()) @db.Uuid
   class_metadata String[] @default([])
   class_data     String[] @default([])
+  class_name     String
+  class_kategori String
+  class_rate     Int      @default(1)
+  class_price    Int
   class_iat      DateTime @default(now())
   class_updates  DateTime @updatedAt
 }
@@ -23,6 +27,7 @@ model Users {
   user_password String
   user_picture  String  @default("")
   admin         Boolean @default(false)
+  role          String  @default("user")
 
   auth_token     String[] @default([])
   user_buy_class String[] @default([])
