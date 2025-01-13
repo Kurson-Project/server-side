@@ -4,6 +4,7 @@ import cors from "cors"
 import { config } from "dotenv"
 import swaggerUi from "swagger-ui-express"
 import YAML from "yamljs"
+import { swagger_options } from "./utils/swagger_options.js"
 config()
 
 
@@ -11,12 +12,11 @@ config()
 
 const APP_PORT = process.env.APP_PORT || 3000
 const app = express()
-const swaggerSpec = YAML.load("./docs/swagger.yaml")
 
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use("/docs",swaggerUi.serve,swaggerUi.setup(swaggerSpec))
+app.use("/docs",swaggerUi.serve,swaggerUi.setup(swagger_options()))
 app.use('/',routes)
 
 app.listen(APP_PORT,()=>{

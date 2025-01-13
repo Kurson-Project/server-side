@@ -6,6 +6,6 @@ const authControllers = new authController()
 
 const userRouter = express.Router()
 
-userRouter.post('/user',authControllers.middleware_auth,userControlers.store)
+userRouter.post('/api/user',authControllers.middleware_auth,userControlers.store)
 
 export default userRouter

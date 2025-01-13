@@ -9,7 +9,7 @@ export function swagger_options() {
         },
         servers : [
             {
-                url : process.env.APP_URL,
+                url : "http://localhost:3000",
                 description : "preview server"
             }
         ],
@@ -28,7 +28,7 @@ export function swagger_options() {
             }
         ],
         paths : {
-            "/auth/google/" : {
+            "/api/auth/google/" : {
                 get : {
                     tags : ["Authtentication"],
                     summary : "authentication using oauth2 google",
@@ -52,7 +52,7 @@ export function swagger_options() {
                     }
                 }
             },
-            "/auth/register" : {
+            "/api/auth/register" : {
                 post : {
                     tags : ["Authtentication"],
                     summary : "create new user",
@@ -88,7 +88,7 @@ export function swagger_options() {
                 }
                 
             },
-            "/auth/login" : {
+            "/api/auth/login" : {
                 post : {
                     tags : ["Authtentication"],
                     summary : "login user authentication",
@@ -121,7 +121,7 @@ export function swagger_options() {
                 }
                 
             },
-            "/auth/google/callback" : {
+            "/api/auth/google/callback" : {
                 post : {
                     tags : ["Callback"],
                     summary : "callback oauth2 google",
@@ -132,7 +132,7 @@ export function swagger_options() {
                 }
                 
             },
-            "/auth/logout" : {
+            "/api/auth/logout" : {
                 post : {
                     tags : ["Authtentication"],
                     summary : "logout & deleted user session",
@@ -159,7 +159,7 @@ export function swagger_options() {
                 }
                 
             },
-            "/user" : {
+            "/api/user" : {
                 post : {
                     tags : ["User"],
                     summary : "getting info user data ( one )",
