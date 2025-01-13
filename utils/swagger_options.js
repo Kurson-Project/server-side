@@ -1,7 +1,7 @@
 import { request, response } from "express";
 export function swagger_options() {
     return {
-        openapi : "3.1.0",
+        openapi : "3.0.0",
         info : {
             title : "Api kurson serve",
             description : "Dokumentasi API ini disusun dalam <b>Bahasa Indonesia</b> untuk mempermudah pengguna yang lebih familiar dengan bahasa ini. Kami berusaha memberikan penjelasan yang jelas dan informatif di setiap bagian dokumentasi. Namun, jika terdapat bagian dalam Bahasa Inggris yang kurang tepat atau tidak jelas, kami mohon maaf atas kekurangannya. Jangan ragu untuk memberikan masukan atau pertanyaan kepada kami agar kami dapat terus meningkatkan kualitas dokumentasi ini.",
@@ -9,7 +9,7 @@ export function swagger_options() {
         },
         servers : [
             {
-                url : process.env.APP_URL,
+                url : process.env.APP_URL || "http://localhost:3000",
                 description : "preview server"
             }
         ],
@@ -28,7 +28,7 @@ export function swagger_options() {
             }
         ],
         paths : {
-            "/auth/google/" : {
+            "/api/auth/google/" : {
                 get : {
                     tags : ["Authtentication"],
                     summary : "authentication using oauth2 google",
@@ -52,7 +52,7 @@ export function swagger_options() {
                     }
                 }
             },
-            "/auth/register" : {
+            "/api/auth/register" : {
                 post : {
                     tags : ["Authtentication"],
                     summary : "create new user",
@@ -88,7 +88,7 @@ export function swagger_options() {
                 }
                 
             },
-            "/auth/login" : {
+            "/api/auth/login" : {
                 post : {
                     tags : ["Authtentication"],
                     summary : "login user authentication",
@@ -121,7 +121,7 @@ export function swagger_options() {
                 }
                 
             },
-            "/auth/google/callback" : {
+            "/api/auth/google/callback" : {
                 post : {
                     tags : ["Callback"],
                     summary : "callback oauth2 google",
@@ -132,7 +132,7 @@ export function swagger_options() {
                 }
                 
             },
-            "/auth/logout" : {
+            "/api/auth/logout" : {
                 post : {
                     tags : ["Authtentication"],
                     summary : "logout & deleted user session",
@@ -159,7 +159,7 @@ export function swagger_options() {
                 }
                 
             },
-            "/user" : {
+            "/api/user" : {
                 post : {
                     tags : ["User"],
                     summary : "getting info user data ( one )",
