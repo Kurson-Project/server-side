@@ -72,7 +72,7 @@ export class authController {
                 token_id: Date.now()
             }
 
-            const token = jwt.sign(tokenData, secret, { expiresIn: "3 days" })
+            const token = jwt.sign(tokenData, secret)
             data.auth_token.push(token)
             await prisma.users.update({
                 where: { user_email }, data: {
@@ -89,10 +89,10 @@ export class authController {
     async logout(request, response) {
 
         try {
-            const new_token = request.userdata.auth_token.filter((items) => { return items != token })
-            await prisma.users.update({ where: { id: jwtDecode.id }, data: { auth_token: new_token } })
+            const new_token = request.userdata.auth_token.filter((items) => { return items != request.user_author_token })
+            await prisma.users.update({ where: { id: request.userdata.id }, data: { auth_token: new_token } })
             response.json(sendjson({ message: "success to logout" }))
-        } catch (err) {
+        } catch (err) { 
             if (process.env.APP_DEBUG) console.log(err)
             response.status(400).json(sendjson({ status: 400, message: "Logout fail" }))
         }
@@ -110,6 +110,7 @@ export class authController {
                 const jwtDecode = jwt.verify(token, secret);
                 const data = await prisma.users.findUnique({ where: { id: jwtDecode.id } });
                 request.userdata = data
+                request.user_author_token = token
                 request.userdata.auth_token.forEach((e) => {
                     if (e == token) { availabe = true; next(); }
                 })
@@ -157,7 +158,11 @@ export class authController {
                         auth_token: data.auth_token
                     }
                 })
-                response.redirect(state + "?token=" + token)
+                if (state == "disable") {
+                    return response.json(sendjson({status : 200 , message : "disable redirect options" , data: {token}}))
+                } else {
+                    response.redirect(state + "?token=" + token)
+                }
             }
 
 
@@ -173,7 +178,7 @@ export class authController {
             const emailData = await prisma.users.findUnique({ where: { user_email: data.email } });
             if (!emailData) {
                 await prisma.users.create({
-                    data: { username: data.name, user_email: data.email, user_password: "loginbygoogle" }
+                    data: { username: data.name, user_email: data.email, user_password: "-" , user_picture : data.picture }
                 })
             }
 
