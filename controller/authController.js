@@ -9,7 +9,7 @@ import { google } from "googleapis"
 const prisma = new PrismaClient();
 const secret = process.env.APP_KEY || "abc"
 
-const callback = process.env.APP_URL + "/auth/google/callback"
+const callback = process.env.APP_URL + "/api/auth/google/callback"
 const oauth2Client = new google.auth.OAuth2(
     process.env.GOOGLE_CLIENT_ID,
     process.env.GOOGLE_CLIENT_SECRET,
