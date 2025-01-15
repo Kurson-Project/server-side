@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { sendjson } from "../utils/auto_generate.js";
+import { sendjson } from "../utils/autoGenerate.js";
 
 export class userControler {
     async store(request , response) {

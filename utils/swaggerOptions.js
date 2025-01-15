@@ -31,6 +31,9 @@ export function swagger_options() {
             {
                 name: "Callback",
                 description: "Callback function"
+            },{
+                name : "Admin",
+                description : "Admin user previlage",
             },
             {
                 name: "User",
@@ -132,7 +135,7 @@ export function swagger_options() {
 
             },
             "/api/auth/google/callback": {
-                post: {
+                get: {
                     tags: ["Callback"],
                     summary: "callback oauth2 google",
                     description: "",
@@ -179,6 +182,92 @@ export function swagger_options() {
                     },
                 }
 
+            },
+            "/api/admin/mentor":{
+                post :{
+                    tags: ["Admin"],
+                    summary : "create mentor account",
+                    description : "cuman admin yang dapat membuat user untuk mentor, dan harus terverifikasi",
+                    security : [{
+                        bearerAuth : []
+                    }],
+                    requestBody: {
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    type: "object",
+                                    properties: {
+                                        username: {
+                                            type: "string"
+                                        },
+                                        user_email: {
+                                            type: 'string'
+                                        },
+                                        user_password: {
+                                            type: "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                },
+                delete : {
+                    tags:["Admin"],
+                    summary : "deleting mentor account",
+                    description : "menghapus mentor user dari pihak admin , admin yang terverifikasi dapat menghapus mentor dan sesuai aturan. Untuk menghapus hanya perlu id mentor untuk melakukanya",
+                    security : [{
+                        bearerAuth : []
+                    }],
+                    requestBody : {
+                        content : {
+                            "application/json" : {
+                                schema : {
+                                    type : "object",
+                                    properties : {
+                                        mentor_id : {
+                                            type : "string",
+                                            example : "..."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                put : {
+                    tags :["Admin"],
+                    summary :"Updating mentor user profile",
+                    description : "Admin dapat mengubah user profile mentor. ini berlaku jika ada kesalahan data maupun lainya. data yang dapat diubah antara lain <b> [ username , user_email , user_picture ] </b>. <br> Perlu diingat bahwa request yang wajib ada adalah mentor_id dan salah satu di antara field yang akan di ubah",
+                    security : [{
+                        bearerAuth : []
+                    }],
+                    requestBody : {
+                        content : {
+                            "application/json" : {
+                                schema : {
+                                    type : "object",
+                                    properties : {
+                                        mentor_id : {
+                                            type : "string",
+                                            example : "require!"
+                                        },
+                                        username : {
+                                            type : "string"
+                                        },
+                                        user_email : {
+                                            type : "string"
+                                        },
+                                        user_picture : {
+                                            type : "string"
+                                        }
+
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     }

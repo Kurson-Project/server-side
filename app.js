@@ -2,8 +2,8 @@ import express from "express"
 import routes from "./routes/index.js"
 import cors from "cors"
 import { config } from "dotenv"
-import { swagger_options } from "./utils/swagger_options.js"
-import { swagger_static } from "./utils/swagger_static.js"
+import { swagger_options } from "./utils/swaggerOptions.js"
+import { swagger_static } from "./utils/swaggerStatic.js"
 config()
 
 const APP_PORT = process.env.APP_PORT || 3000
