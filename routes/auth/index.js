@@ -8,6 +8,6 @@ authRouter.post('/api/auth/register',authControllers.signup)
 authRouter.post('/api/auth/login',authControllers.login)
 authRouter.get('/api/auth/google',authControllers.googleauth)
 authRouter.get('/api/auth/google/callback',authControllers.googleCallback)
-authRouter.post('/api/auth/logout',authControllers.middleware_auth,authControllers.logout)
+authRouter.post('/api/auth/logout',authControllers.middleware_user,authControllers.logout)
 
 export default authRouter

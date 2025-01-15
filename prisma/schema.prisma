@@ -34,3 +34,10 @@ model Users {
   createAt       DateTime @default(now())
   updateAt       DateTime @updatedAt
 }
+
+model Sertificate {
+  id          String   @id @default(uuid()) @db.Uuid
+  user_id     String
+  class_id    String
+  create_date DateTime @default(now())
+}
