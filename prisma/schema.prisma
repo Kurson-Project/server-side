@@ -7,6 +7,11 @@ datasource db {
   provider = "postgresql"
   url      = env("DB_URL")
 }
+enum Role {
+  user
+  admin
+  mentor
+}
 
 model Class {
   class_id       String   @id @default(uuid()) @db.Uuid
@@ -21,18 +26,22 @@ model Class {
 }
 
 model Users {
-  id            String  @id @default(uuid()) @db.Uuid
-  username      String
-  user_email    String  @unique
-  user_password String
-  user_picture  String  @default("")
-  admin         Boolean @default(false)
-  role          String  @default("user")
+  id                     String   @id @default(uuid()) @db.Uuid
+  username               String
+  user_email             String   @unique
+  user_password          String
+  user_picture           String   @default("")
+  admin                  Boolean  @default(false)
+  role                   Role     @default(user)
+  auth_token             String[] @default([])
+  user_class_sertificate String[] @default([])
+  createAt               DateTime @default(now())
+  updateAt               DateTime @updatedAt
+}
 
-  auth_token     String[] @default([])
-  user_buy_class String[] @default([])
-  createAt       DateTime @default(now())
-  updateAt       DateTime @updatedAt
+model Mentor_data {
+  mentor_id          String @id
+  mentor_description String @default("")
 }
 
 model Sertificate {

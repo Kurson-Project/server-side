@@ -8,5 +8,7 @@ const adminRouter = Router()
 adminRouter.post('/api/admin/mentor',authControllers.middleware_admin,authControllers.signup)
 adminRouter.delete('/api/admin/mentor',authControllers.middleware_admin,mentorAdminControls.deleteMentor)
 adminRouter.put("/api/admin/mentor",authControllers.middleware_admin,mentorAdminControls.updateMentor)
+adminRouter.get("/api/admin/mentor",authControllers.middleware_admin,mentorAdminControls.getMentorUser)
+adminRouter.get("/api/admin/mentors",authControllers.middleware_admin,mentorAdminControls.getMentorUsers)
 
 export default adminRouter
