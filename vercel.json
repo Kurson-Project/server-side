@@ -1,9 +1,4 @@
 {
-    "builds" : [
-        {
-            "config" : {"includeFiles" : ["prisma/schema.prisma"]}
-        }
-    ],
     "rewrites" : [{
         "source" : "/(.*)",
         "destination" : "/src"
