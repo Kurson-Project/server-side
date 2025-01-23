@@ -21,3 +21,5 @@ app.use("/admin",middleware_admin,adminRouter)
 app.listen(app_port,()=>{
     console.log("Apps run port :",app_port)
 })
+
+export default app
