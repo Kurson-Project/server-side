@@ -13,9 +13,10 @@ const APP_KEY = process.env.APP_KEY!
 
 export const registerUser = async (data: registerRequest) => {
     data.user_password! = await bcrypt.hash(data.user_password, 4);
-    await userCreate(data);
+    await userCreate(data, "user");
     return;
 }
+
 
 export const userLogin = async (data: { user_email: string; user_password: string }) => {
     const userdata = await getUserDataByEmail(data.user_email);

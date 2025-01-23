@@ -1,8 +1,8 @@
 import { registerRequest } from "./auth.service";
 import { prisma } from "../utils/prisma";
 
-export const userCreate = async (data : registerRequest) =>{
-    await prisma.users.create({data : {username : data.username , user_email : data.user_email , user_password : data.user_password , role : "user"}})
+export const userCreate = async (data : registerRequest, role : "user" | "admin" | "mentor") =>{
+    await prisma.users.create({data : {username : data.username , user_email : data.user_email , user_password : data.user_password , role : role}})
 }
 export const userCreatebyGoogle = async (data : registerRequest , user_picture : string) => {
     await prisma.users.create({data : {username : data.username , user_email : data.user_email , user_password : data.user_password , role : "user" , user_picture : user_picture}})
