@@ -321,6 +321,43 @@ export function swagger_options() {
                   }
                 }
             },
+            "/api/admin/mentors" : {
+                "get": {
+                  "tags": ["Admin"],
+                  "summary": "Get mentor details",
+                  "description": "Mengambil detail mentor berdasarkan mentor_id. Hanya admin yang dapat mengakses.",
+                  "security": [
+                    {
+                      "bearerAuth": []
+                    }
+                  ],
+                  "parameters": [
+                    {
+                      "name": "max",
+                      "in": "query",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      },
+                      "description": "Max data yang diambil di data"
+                    },
+                    {
+                        name : "pageof",
+                        in : "query",
+                        description : "Sekarang adalah page ke berapa ( dimulai dari 0 )",
+                        schema : {
+                            type : "string"
+                        }
+                    },
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "Mentor details retrieved successfully",
+                      
+                    },
+                  }
+                }
+            }
         }
     }
 }
