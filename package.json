@@ -1,9 +1,9 @@
 {
   "name": "server-kurson",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "/src/app.ts",
   "scripts": {
-    "dev": "nodemon ./src/index.ts",
+    "dev": "nodemon ./src/app.ts",
     "proj": "bun  --watch ./src/index.ts",
     "swagbuild" : "bun ./docs/generate.swagger.ts",
     "build": "tsc && prisma generate && bun ./docs/generate.swagger.ts"
