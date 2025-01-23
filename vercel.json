@@ -1,17 +1,11 @@
 {
-    "version" : 2,
-    "builds": [
+    "builds" : [
         {
-            "src": "./dist/src/app.js",
-            "use": "@vercel/node",
-            "config" : {"includeFiles":["prisma/schema.prisma"]}
+            "config" : {"includeFiles" : ["prisma/schema.prisma"]}
         }
     ],
-    "routes": [
-        {
-            "src": "/(.*)",
-            "dest": "/dist/src/app.js"
-        }
-    ],
-    "buildCommand": "npm run build"
+    "rewrites" : [{
+        "source" : "/(.*)",
+        "destination" : "/src"
+    }]
 }
