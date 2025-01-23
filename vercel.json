@@ -2,7 +2,7 @@
     "version" : 2,
     "builds": [
         {
-            "src": "./app.js",
+            "src": "./dist/src/app.js",
             "use": "@vercel/node",
             "config" : {"includeFiles":["prisma/schema.prisma"]}
         }
@@ -10,7 +10,7 @@
     "routes": [
         {
             "src": "/(.*)",
-            "dest": "app.js"
+            "dest": "/dist/src/app.js"
         }
     ]
 }

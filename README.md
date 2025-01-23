@@ -33,14 +33,8 @@ npm install
 ```
 
 3. Configure environment variables:
-Create a `.env` file in the root of your project with the following variables:
+Create a `.env` file in the root of your project with the variables. example variable on the file `.env.example`
 
-``` env
-APP_PORT=3000
-APP_DEBUG = true/false
-APP_KEY = <your jwt secret>
-DB_URL = ...
-```
 
 ## Running the Project
 
@@ -57,42 +51,4 @@ http://localhost:3000
 ```
 
 ## Use Rest API
-
-Indonesian Documentation Warning!
-
-1. User sign-up
-gunakan method POST `/auth/signup`
-
-``` json
-   {
-      "body" : {
-         "username" : "",
-         "user_email" : "",
-         "user_password": "",
-      }
-   }
-```
-
-2. User Login
-gunakan method POST `/auth/login`, keberhasilan login akan memberikan kode token untuk disimpan client sebagai **authentikasi** selanjutnya , kode ini berlaku di semua routes yang perlu **authentikasi.**
-
-``` json
-   {
-      "body" : {
-         "username" : "",
-         "password" : ""
-      }
-   }
-```
-
-jika login berhasil maka token akan dikirim kan langsung di response body
-
-```json
-{
-    "status": 200,
-    "message": "",
-    "data": {
-        "token": <JWT TOKEN>
-    }
-}
-```
+Read the documentation. [Read The Docs](https://kursonserver-preview.vercel.app/docs/)

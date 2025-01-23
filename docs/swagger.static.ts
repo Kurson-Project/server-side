@@ -1,4 +1,4 @@
-export function swagger_static (api_json) {
+export function swagger_static (api_json : string) {
     return `
         <!DOCTYPE html>
         <html>

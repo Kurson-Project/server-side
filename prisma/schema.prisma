@@ -1,6 +1,11 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
 generator client {
-  provider        = "prisma-client-js"
-  previewFeatures = ["driverAdapters"]
+  provider = "prisma-client-js"
 }
 
 datasource db {
@@ -8,31 +13,24 @@ datasource db {
   url      = env("DB_URL")
 }
 
-model Class {
-  class_id       String   @id @default(uuid()) @db.Uuid
-  class_metadata String[] @default([])
-  class_data     String[] @default([])
-  class_name     String
-  class_kategori String
-  class_rate     Int      @default(1)
-  class_price    Int
-  class_iat      DateTime @default(now())
-  class_updates  DateTime @updatedAt
+
+enum Role {
+  user
+  admin
+  mentor
 }
 
 model Users {
-  id            String  @id @default(uuid()) @db.Uuid
-  username      String
-  user_email    String  @unique
-  user_password String
-  user_picture  String  @default("")
-  admin         Boolean @default(false)
-  role          String  @default("user")
-
-  auth_token     String[] @default([])
-  user_buy_class String[] @default([])
-  createAt       DateTime @default(now())
-  updateAt       DateTime @updatedAt
+  id                     String   @id @default(uuid()) @db.Uuid
+  username               String
+  user_email             String   @unique
+  user_password          String
+  user_picture           String   @default("")
+  role                   Role     @default(user)
+  auth_token             String[] @default([])
+  user_class_sertificate String[] @default([])
+  createAt               DateTime @default(now())
+  updateAt               DateTime @updatedAt
 }
 
 model Sertificate {
