@@ -17,6 +17,7 @@ Router.post("/register", async (request, response) => {
     } else {
         try {
             await registerUser({ username, user_email, user_password });
+            response.json(sendJson({message: "registration succsess"}))
         } catch (error) {
             if (error && typeof error == "object" && "code" in error) {
                 if (error.code = "P2002") {
