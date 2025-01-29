@@ -13,7 +13,6 @@ datasource db {
   url      = env("DB_URL")
 }
 
-
 enum Role {
   user
   admin
@@ -21,21 +20,94 @@ enum Role {
 }
 
 model Users {
-  id                     String   @id @default(uuid()) @db.Uuid
-  username               String
-  user_email             String   @unique
-  user_password          String
-  user_picture           String   @default("")
+  id            String @id @default(uuid()) @db.Uuid
+  username      String
+  user_email    String @unique
+  user_password String
+
+  profile_picture_url    String   @default("")
+  bio                    String   @default("")
+  account_status         Boolean  @default(true)
+  social_links           String[] @default([])
+  email_verified         Boolean  @default(false)
+  mentor_specializations String[] @default([])
+  mentor_verived         Boolean  @default(false)
   role                   Role     @default(user)
   auth_token             String[] @default([])
-  user_class_sertificate String[] @default([])
   createAt               DateTime @default(now())
   updateAt               DateTime @updatedAt
 }
 
+model Category {
+  id          Int           @id @default(autoincrement())
+  name        String
+  slug        String        @unique
+  description String
+  rating      Int         @default(0)
+  createAt    DateTime      @default(now())
+  updateAt    DateTime      @updatedAt
+  products    ProductCategory[]
+}
+
+model Product {
+  id            Int          @id @default(autoincrement())
+  name          String       @unique
+  description   String 
+  price         Int
+  instructor_id String
+  duration      Int
+  thumbnail_url String       @default("")
+  rating        Int          @default(1)
+  total_review  Int          @default(0)
+  active        Boolean      @default(false)
+  requerement   String       @default("")
+  createAt      DateTime     @default(now())
+  updateAt      DateTime     @updatedAt
+  categories    ProductCategory[]
+}
+
+model ProductCategory {
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  productId Int
+
+  category  Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  categoryId Int
+
+  @@id([productId, categoryId]) // Composite Primary Key
+}
+
+
 model Sertificate {
-  id          String   @id @default(uuid()) @db.Uuid
+  id         String   @id @default(uuid()) @db.Uuid
+  user_id    String
+  product_id String
+  progres    String   @default("")
+  createAt   DateTime @default(now())
+  updateAt   DateTime @updatedAt
+}
+
+enum OrderStatus {
+  success
+  fail
+  cancel
+}
+
+model Order {
+  id          String      @id @default(uuid()) @db.Uuid
   user_id     String
-  class_id    String
-  create_date DateTime @default(now())
+  product_id  String
+  total_price Int
+  status      OrderStatus
+  createAt    DateTime    @default(now())
+  updateAt    DateTime    @updatedAt
+}
+
+model Review {
+  id         String   @id @default(uuid()) @db.Uuid
+  product_id String
+  user_id    String
+  rating     Int
+  comment    String
+  createAt   DateTime @default(now())
+  updateAt   DateTime @updatedAt
 }

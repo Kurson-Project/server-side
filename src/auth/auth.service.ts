@@ -30,7 +30,7 @@ export const userLogin = async (data: { user_email: string; user_password: strin
             const payload = {
                 username: userdata.username,
                 user_email: userdata.user_email,
-                user_picture: userdata.user_picture,
+                user_picture: userdata.profile_picture_url,
                 role: userdata.role,
                 createAt: userdata.createAt,
                 updateAt: userdata.updateAt,
@@ -94,7 +94,7 @@ export const googleCallback = async (code: string, state: string) => {
         const payload = {
             username: user_data!.username,
             user_email: user_data!.user_email,
-            user_picture: user_data!.user_picture,
+            user_picture: user_data!.profile_picture_url,
             role: user_data!.role,
             createAt: user_data!.createAt,
             updateAt: user_data!.updateAt,

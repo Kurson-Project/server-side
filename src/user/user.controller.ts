@@ -9,6 +9,7 @@ Router.get('/', async (request,response)=>{
         const userdata = await getUserdatabyID(user_id);
         response.json({message : "success" , data : userdata})
     } catch (error) {
+        console.log(error)
         response.status(500).json(sendJson({message:"Internal Server Error"}))
     } 
 })

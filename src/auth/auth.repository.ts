@@ -5,7 +5,7 @@ export const userCreate = async (data : registerRequest, role : "user" | "admin"
     await prisma.users.create({data : {username : data.username , user_email : data.user_email , user_password : data.user_password , role : role}})
 }
 export const userCreatebyGoogle = async (data : registerRequest , user_picture : string) => {
-    await prisma.users.create({data : {username : data.username , user_email : data.user_email , user_password : data.user_password , role : "user" , user_picture : user_picture}})
+    await prisma.users.create({data : {username : data.username , user_email : data.user_email , user_password : data.user_password , role : "user" , profile_picture_url : user_picture}})
 }
 export const getUserDataByEmail = async (Email : string) => {
     return await prisma.users.findFirst({where : {user_email : Email}});
