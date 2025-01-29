@@ -1,8 +1,7 @@
-import express, { response } from "express";
+import express from "express";
 import { containsSpecialChars, sendJson } from "../utils/exepts";
 import { googleCallback, googleRoute, registerUser, userLogin, userLogout } from "./auth.service";
-import { middleware, middleware_allrole } from "../middleware";
-import { request } from "http";
+import { middleware_allrole } from "../middleware";
 export const Router = express.Router();
 
 

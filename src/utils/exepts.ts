@@ -8,9 +8,8 @@ export function containsSpecialChars(str : String) {
 export const userSecretDeselect = {
     username : true,
     user_email : true,
-    user_picture : true,
+    profile_picture_url : true,
     role : true,
-    user_class_sertificate : true,
     createAt : true,
     updateAt : true
 }

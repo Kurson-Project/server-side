@@ -27,7 +27,7 @@ export async function middleware(role : string,request: Request) {
             if (typeof tokenDecoded == "object" && "user_email" in tokenDecoded && "role" in tokenDecoded) {
                 const userdata = await getUserDataByEmail(tokenDecoded.user_email)
                 if (role != "all") {
-                    if (role != tokenDecoded.role) {
+                    if (role != userdata!.role) {                        
                         throw Error("role cancel")
                     }
                 }

@@ -7,7 +7,7 @@
     },
     "servers": [
         {
-            "url": "http://localhost:3001",
+            "url": "http://localhost:3000",
             "description": "preview server"
         }
     ],
@@ -33,6 +33,11 @@
         {
             "name": "Admin",
             "description": "Admin user previlage"
+        },
+
+        {
+            "name": "Mentor",
+            "description": "Mentor data, info, .etc"
         },
         {
             "name": "User",
@@ -355,7 +360,7 @@
             }
         },
         "/user": {
-            "post": {
+            "get": {
                 "tags": [
                     "User"
                 ],
@@ -372,6 +377,89 @@
                     },
                     "401": {
                         "description": "unauthorize"
+                    }
+                }
+            }
+        },
+        "/mentor/class": {
+            "post":{
+                "tags": [
+                    "Mentor"
+                ],
+                "summary": "create new product ( class )",
+                "description": "Create New Class",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema" : {
+                                "type": "object",
+                                "properties": {
+                                    "name" : {
+                                        "type": "string"
+                                    },
+                                    "description" : {
+                                        "type": "string"
+                                    },
+                                    "category_id" : {
+                                        "type": "number",
+                                        "example" : 1
+                                    },
+                                    "price" : {
+                                        "type":  "number",
+                                        "example" : 100000
+                                    },
+                                    "duration" : {
+                                        "type":  "number",
+                                        "example" : 36000
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/mentor/class/category": {
+            "post": {
+                "tags": [
+                    "Mentor"
+                ],
+                "summary":"create new category product",
+                "description": "Create New category",
+                "parameters": [],
+                "requestBody":{
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    },
+                                    "slug": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
                     }
                 }
             }
