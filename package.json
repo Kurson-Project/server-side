@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "nodemon ./src/app.ts",
     "proj": "bun  --watch ./src/index.ts",
-    "swagbuild" : "bun ./docs/generate.swagger.ts",
+    "swagbuild": "bun ./docs/generate.swagger.ts",
     "build": "prisma generate && tsc"
   },
   "keywords": [],
@@ -14,8 +14,10 @@
   "description": "",
   "dependencies": {
     "@prisma/client": "^6.2.1",
+    "@types/cors": "^2.8.17",
     "@types/http-errors": "^2.0.4",
     "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "googleapis": "^144.0.0",
