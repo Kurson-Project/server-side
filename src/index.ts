@@ -5,6 +5,7 @@ import { adminRouter } from "./admin/admin.controller";
 import { middleware_admin, middleware_allrole, middleware_mentor } from "./middleware";
 import { Router as UserController } from "./user/user.controller";
 import { Router as MentorController } from "./mentor/mentor.controller";
+import cors from "cors"
 
 import jsonSwager from "../docs/swagger.json";
 import { swagger_static } from "../docs/swagger.static";
@@ -13,6 +14,12 @@ import { homepage } from "./utils/hompage.status";
 const app  = express();
 const app_port = process.env.APP_PORT || 3000
 jsonSwager.servers[0].url = process.env.APP_URL!
+
+app.use(cors({
+    origin : "*",
+    methods : ["GET","POST","PATCH","DELETE"],
+    allowedHeaders:["Content-Type","Authorization"]
+}))
 
 app.use(express.json())
 
